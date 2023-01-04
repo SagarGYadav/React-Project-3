@@ -10,7 +10,19 @@ const AddUser = (props) => {
 
   const addUserHandler = (e) => {
     e.preventDefault();
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      return;
+    }
+    if (+enteredAge < 1) {
+      return;
+    }
+    // setEnteredAge useState here it's became string not a number.
+    //  to convert it into number (or we want to be super safe)
+    // we added '+' before enteredAge . so now it will give positive number.
+
     console.log(enteredUsername, enteredAge);
+    setEnteredUsername("");
+    setEnteredAge("");
   };
 
   const usernameChangeHandler = (e) => {
@@ -26,9 +38,19 @@ const AddUser = (props) => {
       <form onSubmit={addUserHandler}>
         <label htmlFor="username">Username</label>
         {/* for we can't use here, because it's reserved javascript name, so using htmlFor */}
-        <input id="username" type="text" onChange={usernameChangeHandler} />
+        <input
+          id="username"
+          type="text"
+          value={enteredUsername}
+          onChange={usernameChangeHandler}
+        />
         <label htmlFor="age">Age (Years)</label>
-        <input id="age" type="number" onChange={ageChangeHandler} />
+        <input
+          id="age"
+          type="number"
+          value={enteredAge}
+          onChange={ageChangeHandler}
+        />
         <Button type="submit">Add User</Button>
       </form>
     </Card>
