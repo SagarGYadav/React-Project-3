@@ -20,7 +20,7 @@ const AddUser = (props) => {
     //  to convert it into number (or we want to be super safe)
     // we added '+' before enteredAge . so now it will give positive number.
 
-    console.log(enteredUsername, enteredAge);
+    props.onAddUser(enteredUsername, enteredAge);
     setEnteredUsername("");
     setEnteredAge("");
   };
